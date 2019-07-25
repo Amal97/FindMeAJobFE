@@ -29,11 +29,11 @@ class App extends React.Component<{}, IState>{
   public findJobs = (inputSearch: string, locationSearch: string) => {
     const body = {"inputSearch":inputSearch, "locationSearch":locationSearch}
     const proxyurl = "https://findmeajobapidevops97.azurewebsites.net/api/Jobs";
-    const url = "https://findmeajob.azurewebsites.net/";
-    fetch(proxyurl + url, {
+    fetch(proxyurl, {
       body: JSON.stringify(body),
       headers: {
         Accept: "text/plain",
+        "Access-Control-Allow-Origin":"*",
         "Content-Type": "application/json"
       },
       method: "POST"
