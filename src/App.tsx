@@ -28,7 +28,9 @@ class App extends React.Component<{}, IState>{
 
   public findJobs = (inputSearch: string, locationSearch: string) => {
     const body = {"inputSearch":inputSearch, "locationSearch":locationSearch}
-    fetch("https://findmeajobapidevops97.azurewebsites.net/api/Jobs", {
+    const proxyurl = "https://findmeajobapidevops97.azurewebsites.net/api/Jobs";
+    const url = "https://findmeajob.azurewebsites.net/";
+    fetch(proxyurl + url, {
       body: JSON.stringify(body),
       headers: {
         Accept: "text/plain",
