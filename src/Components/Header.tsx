@@ -9,6 +9,7 @@ interface IProps{
 }
 
 interface IState{
+    fromInput:string
     locationInput:string
     searchInput:string
 }
@@ -18,6 +19,7 @@ export default class Header extends React.Component<IProps,IState> {
     public constructor(props:any){
         super(props);
         this.state = { 
+            fromInput:"",
             locationInput:"",
             searchInput:""
         }
@@ -25,7 +27,7 @@ export default class Header extends React.Component<IProps,IState> {
 
     public findJobs = (e: { preventDefault: () => void; }) => {
         e.preventDefault()
-        this.props.findJobs(this.state.searchInput, this.state.locationInput)        
+        this.props.findJobs(this.state.searchInput, this.state.locationInput, this.state.fromInput)        
     }
 
     public render() {
@@ -46,6 +48,13 @@ export default class Header extends React.Component<IProps,IState> {
                     margin="normal"
                     onChange = { (event: any) => this.setState({locationInput:event.target.value})}
                     value = {this.state.locationInput}
+                />
+                <TextField
+                    id="from"
+                    label="from"
+                    margin="normal"
+                    onChange = { (event: any) => this.setState({fromInput:event.target.value})}
+                    value = {this.state.fromInput}
                 />
                 <button className="button is-info" onClick={this.findJobs}> Search </button>
             </form>
