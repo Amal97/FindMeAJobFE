@@ -9,8 +9,10 @@
     "react": "^16.8.6",
     "react-bootstrap": "^1.0.0-beta.10",
     "react-dom": "^16.8.6",
+    "react-facebook": "^8.0.4",
     "react-firebaseui": "^3.1.2",
-    "react-scripts-ts": "3.1.0"
+    "react-scripts-ts": "3.1.0",
+    "react-sharingbuttons": "^1.0.0"
   },
   "scripts": {
     "start": "react-scripts-ts start",

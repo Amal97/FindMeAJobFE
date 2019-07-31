@@ -8,6 +8,11 @@ import * as firebase from 'firebase/app'
 import 'firebase/auth';
 import Card from 'react-bootstrap/Card';
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+import { FacebookProvider, ShareButton } from 'react-facebook';
+
+import 'react-sharingbuttons/dist/main.css'
+
+
 
 
 // import logo from './logo.svg';
@@ -83,14 +88,21 @@ class App extends React.Component<{}, IState>{
             result.forEach((Jobs:any) => {
                 const row = (
                 <Card style={{ width: '60rem' }}>
-                <Card.Body>
-                    <Card.Title>{Jobs.jobTitle}</Card.Title>
-                    <Card.Subtitle className="mb-2 text-muted">{Jobs.companyName}</Card.Subtitle>
-                    <Card.Text>
-                        {Jobs.jobDescription}
-                    </Card.Text>
-                    <Card.Link href={Jobs.webUrl}>Visit Website</Card.Link>
-                </Card.Body>
+                  <Card.Body>
+                      <Card.Title>{Jobs.jobTitle}</Card.Title>
+                      <Card.Subtitle className="mb-2 text-muted">{Jobs.companyName}</Card.Subtitle>
+                      <Card.Text>
+                          {Jobs.jobDescription}
+                      </Card.Text>
+                      <Card.Link href={Jobs.webUrl}>Visit Website</Card.Link>
+                  </Card.Body>
+                  <div>
+                  <FacebookProvider appId="2346056735478005"  >
+                    <ShareButton href={Jobs.webUrl} className="react-sharing-button__link react-sharing-button--facebook">
+                      Share on Facebook
+                    </ShareButton>
+                  </FacebookProvider>
+                  </div>
                 </Card>
                 )
                 output.push(row);
@@ -111,6 +123,7 @@ class App extends React.Component<{}, IState>{
              <div> Signed In !</div>
              <button onClick={()=>firebase.auth().signOut()}> Sign Out!</button>
              <h1>Welcome {firebase.auth().currentUser!.displayName} </h1>
+
              <Header findJobs={this.findJobs} />
              <JobList mount={this.listMounted} />
              {this.state.jobList}
