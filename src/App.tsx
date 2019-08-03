@@ -8,9 +8,18 @@ import * as firebase from 'firebase/app'
 import 'firebase/auth';
 import Star from '@material-ui/icons/Star'
 import StarBorder from '@material-ui/icons/StarBorder'
+import EjectIcon from '@material-ui/icons/ArrowBack'
 import Card from 'react-bootstrap/Card';
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import { FacebookProvider, ShareButton } from 'react-facebook';
+import logo from './images/logo.png';
+
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+// import IconButton from '@material-ui/core/IconButton';
+
 
 import 'react-sharingbuttons/dist/main.css'
 
@@ -94,7 +103,7 @@ class App extends React.Component<{}, IState>{
             const output:any[] = []
             result.forEach((Jobs:any) => {
                 const row = (
-                <Card style={{ width: '60rem' }} className= "centre" >
+                <Card style={{ width: '55%' }} >
                   <Card.Body>
                       <Card.Title>{Jobs.jobTitle}</Card.Title>
                       <Card.Subtitle className="mb-2 text-muted">{Jobs.companyName}</Card.Subtitle>
@@ -152,17 +161,30 @@ class App extends React.Component<{}, IState>{
       }
     }
 
+
+
   public render() {
     return (
        <div className="App">
          {this.state.isSignedIn ? (
            <span>
-             <div> Signed In !</div>
-             <button onClick={()=>firebase.auth().signOut()}> Sign Out!</button>
-             <h1>Welcome {firebase.auth().currentUser!.displayName} </h1>
+             <AppBar style={{backgroundColor: '#00ADB4'}} position="static">
+              <Toolbar>
+                  <EjectIcon />
+                <Typography variant="h6" className="title">
+                  <Button color="inherit" onClick={()=>firebase.auth().signOut()}> Log Out</Button>
+                  <Button style={{backgroundColor: '#00ADB4', color: 'white', position: 'absolute', right: 0}} onClick={this.check}> {this.state.appliedButtonValue} </Button>
+                </Typography>
+
+              </Toolbar>
+            </AppBar>
+
+
+             <img src={logo} alt="Logo" width="200" height="200" />;
+             <h1 className="h1">Welcome {firebase.auth().currentUser!.displayName} </h1>
              <Header findJobs={this.findJobs} />
 
-            <button className="button is-info" onClick={this.check}> {this.state.appliedButtonValue} </button>
+            {/* <button className="button is-info" onClick={this.check}> {this.state.appliedButtonValue} </button> */}
 
             {this.state.applied && <JobList mount={this.listMounted} />}
             {!this.state.applied && this.state.jobList}

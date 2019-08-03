@@ -1,0 +1,24 @@
+.SearchBar{
+    text-decoration-color: white;
+    
+}
+
+.form{
+  color: green;
+}
+
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 2px solid white;
+  color:#393E44;
+  -webkit-text-fill-color: #393E44;
+  -webkit-text-stroke-color: #393E44;
+}
+
+.searchButton{
+  background-color:"blue";
+}

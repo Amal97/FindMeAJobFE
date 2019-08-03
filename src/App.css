@@ -1,5 +1,8 @@
-.App {
+.App, html  {
   text-align: center;
+  background-color:#393E44;
+  height: 100%;
+  
 }
 
 .App-logo {
@@ -23,8 +26,19 @@
 }
 
 .centre {
-  left: 18%;
+  left: 25%;
 }
+
+.h1{
+  color: white;
+}
+
+.logout{
+    color: white;
+    margin-right: 80%;
+}
+
+
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

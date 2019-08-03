@@ -49,7 +49,7 @@ export default class JobList extends React.Component<IProps,IState> {
             const output:any[] = []
             result.forEach((Jobs:any) => {
                 const row = (
-                <Card style={{ width: '60rem' }} className= "centre" >
+                <Card style={{ width: '55%' }} className= "centre" >
                   <Card.Body>
                       <Card.Title>{Jobs.jobTitle}</Card.Title>
                       <Card.Subtitle className="mb-2 text-muted">{Jobs.companyName}</Card.Subtitle>
@@ -82,7 +82,8 @@ export default class JobList extends React.Component<IProps,IState> {
     public render(){
         return (
             <div>
-                <h1>Jobs</h1>
+                {"\n"}
+                <h1>Applied Jobs</h1>
                 {this.state.jobList}
               
             </div>

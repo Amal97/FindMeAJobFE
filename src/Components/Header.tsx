@@ -1,8 +1,10 @@
 // import { IconButton } from '@material-ui/core';
 // import InputAdornment from '@material-ui/core/InputAdornment';
+import './Header.css';
  import TextField from '@material-ui/core/TextField'
 // import AddCircle from '@material-ui/icons/AddCircle'
 import * as React from 'react';
+import Button from '@material-ui/core/Button';
 
 interface IProps{
     findJobs:any,
@@ -13,7 +15,6 @@ interface IState{
     locationInput:string
     searchInput:string
 }
-
 
 export default class Header extends React.Component<IProps,IState> {
     public constructor(props:any){
@@ -35,6 +36,7 @@ export default class Header extends React.Component<IProps,IState> {
             <div className="header">
             <form className="form" id="showJob">
                 <TextField
+                    required={true}
                     id="search"
                     className = "SearchBar"
                     label="Search"
@@ -43,6 +45,7 @@ export default class Header extends React.Component<IProps,IState> {
                     value = {this.state.searchInput}
                 />
                 <TextField
+                    required={true}
                     id="location"
                     label="Location"
                     margin="normal"
@@ -50,17 +53,21 @@ export default class Header extends React.Component<IProps,IState> {
                     value = {this.state.locationInput}
                 />
                 <TextField
+                    required={true}
                     id="from"
                     label="from"
                     margin="normal"
                     onChange = { (event: any) => this.setState({fromInput:event.target.value})}
                     value = {this.state.fromInput}
                 />
-                <button className="button is-info" onClick={this.findJobs}> Search </button>
             </form>
+                            <Button variant="contained" className="searchButton" style={{backgroundColor: '#00ADB4', color: 'white'}} onClick={this.findJobs}>Search</Button>
+
 
             
             </div>
+            //     <Button className="button is-info" onClick={this.findJobs}> Search </Button>
+
         )
     }
 }
