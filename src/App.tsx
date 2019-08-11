@@ -103,7 +103,7 @@ class App extends React.Component<{}, IState>{
             const output:any[] = []
             result.forEach((Jobs:any) => {
                 const row = (
-                <Card style={{ width: '55%' }} >
+                <Card style={{ width: '53%' }} className= "centre">
                   <Card.Body>
                       <Card.Title>{Jobs.jobTitle}</Card.Title>
                       <Card.Subtitle className="mb-2 text-muted">{Jobs.companyName}</Card.Subtitle>
@@ -173,6 +173,7 @@ class App extends React.Component<{}, IState>{
                   <EjectIcon />
                 <Typography variant="h6" className="title">
                   <Button color="inherit" onClick={()=>firebase.auth().signOut()}> Log Out</Button>
+                  <img src={firebase.auth().currentUser!.photoURL || ''} alt="profile picture" width="40" height="40" />
                   <Button style={{backgroundColor: '#00ADB4', color: 'white', position: 'absolute', right: 0}} onClick={this.check}> {this.state.appliedButtonValue} </Button>
                 </Typography>
 
@@ -190,11 +191,16 @@ class App extends React.Component<{}, IState>{
             {!this.state.applied && this.state.jobList}
 
           </span>
-         ):(
-           <StyledFirebaseAuth
+         ):
+         
+         (
+          <span>
+             <h1 className="h1"> Please Sign In</h1>
+             <StyledFirebaseAuth
               uiConfig={this.uiConfig}
               firebaseAuth={firebase.auth()}
-            />
+              />
+          </span>
          )}
        </div>
 

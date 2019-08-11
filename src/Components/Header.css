@@ -1,7 +1,7 @@
 .SearchBar{
     text-decoration-color: white;
-    
 }
+        
 
 .form{
   color: green;
@@ -14,9 +14,10 @@ input[type=text] {
   box-sizing: border-box;
   border: none;
   border-bottom: 2px solid white;
-  color:#393E44;
-  -webkit-text-fill-color: #393E44;
-  -webkit-text-stroke-color: #393E44;
+  color:white;
+  -webkit-text-fill-color: black;
+  -webkit-text-stroke-color: white;
+
 }
 
 .searchButton{
