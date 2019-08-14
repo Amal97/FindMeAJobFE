@@ -32,6 +32,7 @@ interface IState {
   locationSearch: string
   inputSearch: string
   isSignedIn:boolean
+  isLoading: boolean
   jobList: object
   updateJobList: any
   fromSearch: string
@@ -62,6 +63,7 @@ class App extends React.Component<{}, IState>{
       appliedButtonValue: "Show Applied Jobs",
       fromSearch:"",
       inputSearch: "",
+      isLoading: false,
       isSignedIn: false,
       jobList: [],
       locationSearch: "",
@@ -87,6 +89,10 @@ class App extends React.Component<{}, IState>{
 
   public findJobs = (inputSearch: string, locationSearch: string, fromSearch: string) => {
     console.log(fromSearch);
+    this.setState({isLoading:true})
+    this.setState({applied:false})
+    this.setState({appliedButtonValue: "Show Applied Jobs"})
+
     const body = {"jobSearch":inputSearch, "location":locationSearch, "from":fromSearch}
     const proxyurl = "https://findmeajobapidevops97.azurewebsites.net/api/Jobs";
     fetch(proxyurl, {
@@ -126,6 +132,7 @@ class App extends React.Component<{}, IState>{
                 console.log("hey",Jobs.applied); 
                 output.push(row);
             });
+            this.setState({isLoading:false})
             this.setState({jobList:output})
         })
         console.log("2nd"); 
@@ -184,6 +191,8 @@ class App extends React.Component<{}, IState>{
              <img src={logo} alt="Logo" width="200" height="200" />;
              <h1 className="h1">Welcome {firebase.auth().currentUser!.displayName} </h1>
              <Header findJobs={this.findJobs} />
+
+             {this.state.isLoading && <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Loading_Key.gif" alt="Loading..."/>}
 
             {/* <button className="button is-info" onClick={this.check}> {this.state.appliedButtonValue} </button> */}
 

@@ -20,7 +20,7 @@ export default class Header extends React.Component<IProps,IState> {
     public constructor(props:any){
         super(props);
         this.state = { 
-            fromInput:"",
+            fromInput:"seek",
             locationInput:"",
             searchInput:""
         }
@@ -53,7 +53,9 @@ export default class Header extends React.Component<IProps,IState> {
                     onChange = { (event: any) => this.setState({locationInput:event.target.value})}
                     value = {this.state.locationInput}
                 />
+                {/*
                 <TextField
+                    select
                     required={true}
                     id="from"
                     className = "SearchBar"
@@ -62,6 +64,7 @@ export default class Header extends React.Component<IProps,IState> {
                     onChange = { (event: any) => this.setState({fromInput:event.target.value})}
                     value = {this.state.fromInput}
                 />
+                */}
             </form>
                 <Button variant="contained" className="searchButton" style={{backgroundColor: '#00ADB4', color: 'white'}} onClick={this.findJobs}>Search</Button>
 

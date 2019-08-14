@@ -8,6 +8,7 @@ import { FacebookProvider, ShareButton } from 'react-facebook';
 
 
 interface IState{
+    isLoading: boolean
     jobList: any
 }
 
@@ -19,8 +20,9 @@ export default class JobList extends React.Component<IProps,IState> {
     public constructor(props:any){
         super(props);
         this.state = { 
+            isLoading: false,
             jobList: []
-            }
+        }
     }
 
     public componentDidMount = () =>{
@@ -37,6 +39,7 @@ export default class JobList extends React.Component<IProps,IState> {
 
 
     public search = () => {
+        this.setState({isLoading:true})
         fetch("https://findmeajobapidevops97.azurewebsites.net/api/Jobs/Applied", {
             headers: {
                 Accept: "text/plain"
@@ -74,6 +77,7 @@ export default class JobList extends React.Component<IProps,IState> {
                 console.log("hey",Jobs.applied); 
                 output.push(row);
             });
+            this.setState({isLoading:false})
             this.setState({jobList:output})
         })
         console.log("2nd"); 
@@ -83,7 +87,8 @@ export default class JobList extends React.Component<IProps,IState> {
         return (
             <div>
                 {"\n"}
-                <h1>Applied Jobs</h1>
+                <h1 className="h1">Applied Jobs</h1>
+                {this.state.isLoading && <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Loading_Key.gif" alt="Loading..."/>}
                 {this.state.jobList}
               
             </div>
