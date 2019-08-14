@@ -39,7 +39,7 @@ export default class Header extends React.Component<IProps,IState> {
                     required={true}
                     id="search"
                     className = "SearchBar"
-                    label="Search"
+                    label="Search Job Titles"
                     margin="normal"
                     onChange = { (event: any) => this.setState({searchInput:event.target.value})}
                     value = {this.state.searchInput}
