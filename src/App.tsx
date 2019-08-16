@@ -29,11 +29,12 @@ import 'react-sharingbuttons/dist/main.css'
 // import logo from './logo.svg';
 
 interface IState {
+  empty: any
   locationSearch: string
   inputSearch: string
   isSignedIn:boolean
   isLoading: boolean
-  jobList: object
+  jobList: any
   updateJobList: any
   fromSearch: string
   applied: boolean
@@ -61,6 +62,7 @@ class App extends React.Component<{}, IState>{
     this.state = {
       applied: false,
       appliedButtonValue: "Show Applied Jobs",
+      empty: "",
       fromSearch:"",
       inputSearch: "",
       isLoading: false,
@@ -134,6 +136,10 @@ class App extends React.Component<{}, IState>{
             });
             this.setState({isLoading:false})
             this.setState({jobList:output})
+
+            if(this.state.jobList.length <= 0){
+                this.setState({empty: "No Jobs Found"})
+            }
         })
         console.log("2nd"); 
   }
@@ -200,6 +206,7 @@ class App extends React.Component<{}, IState>{
 
             {this.state.applied && <JobList mount={this.listMounted} />}
             {!this.state.applied && this.state.jobList}
+            <p className="text"> {this.state.empty} </p>
 
           </span>
          ):

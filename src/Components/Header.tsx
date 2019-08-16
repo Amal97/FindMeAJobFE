@@ -48,7 +48,7 @@ export default class Header extends React.Component<IProps,IState> {
                     required={true}
                     id="location"
                     className = "SearchBar"
-                    label="Location"
+                    label="Location in New Zealand"
                     margin="normal"
                     onChange = { (event: any) => this.setState({locationInput:event.target.value})}
                     value = {this.state.locationInput}

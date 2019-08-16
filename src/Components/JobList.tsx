@@ -83,7 +83,6 @@ export default class JobList extends React.Component<IProps,IState> {
             this.setState({jobList:output})
 
             if(this.state.jobList.length <= 0){
-                console.log("HOLA"); 
                 this.setState({empty: "No Jobs Applied, please select the star when you search for jobs"})
             }
         })
