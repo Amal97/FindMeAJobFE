@@ -192,6 +192,8 @@ class App extends React.Component<{}, IState>{
              <h1 className="h1">Welcome {firebase.auth().currentUser!.displayName} </h1>
              <Header findJobs={this.findJobs} />
 
+
+             {this.state.isLoading && <h2 className="h2"> This might take some time...</h2>}
              {this.state.isLoading && <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Loading_Key.gif" alt="Loading..."/>}
 
             {/* <button className="button is-info" onClick={this.check}> {this.state.appliedButtonValue} </button> */}

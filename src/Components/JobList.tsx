@@ -8,6 +8,7 @@ import { FacebookProvider, ShareButton } from 'react-facebook';
 
 
 interface IState{
+    empty: any
     isLoading: boolean
     jobList: any
 }
@@ -20,6 +21,7 @@ export default class JobList extends React.Component<IProps,IState> {
     public constructor(props:any){
         super(props);
         this.state = { 
+            empty: "",
             isLoading: false,
             jobList: []
         }
@@ -79,6 +81,11 @@ export default class JobList extends React.Component<IProps,IState> {
             });
             this.setState({isLoading:false})
             this.setState({jobList:output})
+
+            if(this.state.jobList.length <= 0){
+                console.log("HOLA"); 
+                this.setState({empty: "No Jobs Applied, please select the star when you search for jobs"})
+            }
         })
         console.log("2nd"); 
   } 
@@ -90,6 +97,8 @@ export default class JobList extends React.Component<IProps,IState> {
                 <h1 className="h1">Applied Jobs</h1>
                 {this.state.isLoading && <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Loading_Key.gif" alt="Loading..."/>}
                 {this.state.jobList}
+                <p className="text"> {this.state.empty} </p>
+
               
             </div>
         )
